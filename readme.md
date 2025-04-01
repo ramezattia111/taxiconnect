@@ -2,8 +2,8 @@
 
 #### 1. Clone the Repository
 ````bash
-git clone https://github.com/your-repo/event-management-app.git
-cd event-management-app
+git clone https://github.com/ramezattia111/taxiconnect.git
+cd taxiconnect
 ````
 
 #### 2. Run docker compose
