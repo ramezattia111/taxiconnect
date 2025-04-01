@@ -1,0 +1,2 @@
+database : postgres (With docker)
+configuration of project and link with postgres : ressources/application.properties
