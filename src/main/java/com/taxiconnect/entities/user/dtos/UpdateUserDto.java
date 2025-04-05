@@ -1,9 +1,5 @@
-package com.taxiconnect.dtos;
-
-import java.util.List;
-
-import com.taxiconnect.entities.roles.UserRoles;
-
+package com.taxiconnect.entities.user.dtos;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,10 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateUserDto {
+public class UpdateUserDto {
     private String firstName;
     private String lastName;
+    @Email(message = "The email is not valid.")
     private String email;
     private String password;
-    private List<UserRoles> role;
 }
