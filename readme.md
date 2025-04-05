@@ -3,10 +3,7 @@
 #### PROJECT STRUCTURE
 ```
 └── 📁taxiconnect-main
-    └── 📁src
-        └── 📁main
-            └── 📁java
-                └── 📁com
+    └── 📁src/📁main/📁java/📁com
                     └── 📁taxiconnect
                         └── 📁controllers
                         └── 📁entities
