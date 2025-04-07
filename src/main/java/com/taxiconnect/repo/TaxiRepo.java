@@ -1,4 +1,4 @@
-x@package com.taxiconnect.repo;
+package com.taxiconnect.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.taxiconnect.entities.taxi.Taxi;
