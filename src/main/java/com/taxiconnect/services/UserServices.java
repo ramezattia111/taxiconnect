@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.taxiconnect.entities.client.Client;
 import com.taxiconnect.entities.user.User;
 import com.taxiconnect.entities.user.dtos.CreateUserDto;
 import com.taxiconnect.entities.user.dtos.UpdateUserDto;
@@ -20,7 +21,7 @@ public class UserServices {
 
 
     public User createUser(CreateUserDto user) {
-        User newUser = new User();
+        User newUser = new Client();
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setEmail(user.getEmail());

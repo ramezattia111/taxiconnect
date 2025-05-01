@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.text.html.parser.Entity;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,8 +18,11 @@ import org.springframework.web.context.request.WebRequest;
 import com.taxiconnect.exceptions.ConflictNotFound;
 import com.taxiconnect.exceptions.RessourceNotFound;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @ControllerAdvice
 public class AdviceController {
+    private final static Logger log = LoggerFactory.getLogger(AdviceController.class);
     @ExceptionHandler(value = ConflictNotFound.class)
     public ResponseEntity<Object> handleResourceConflict(ConflictNotFound ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
@@ -47,6 +54,16 @@ public class AdviceController {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex) {
+        return new ResponseEntity<>(Map.of("message", "Not Found"), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<Object> handleIllegalValue(EntityNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
@@ -55,6 +72,7 @@ public class AdviceController {
         body.put("error", "Internal Server Error");
         body.put("message", ex.getMessage());
         body.put("path", request.getDescription(false).replace("uri=", ""));
+        log.error("Unhandled error occured, resulted in INTERNAL_SERVER_ERROR: ", ex);
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

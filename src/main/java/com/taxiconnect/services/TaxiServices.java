@@ -32,7 +32,6 @@ public class TaxiServices {
         newTaxi.setModel(taxi.getModel());
         newTaxi.setBrand(taxi.getBrand());
         newTaxi.setTaxiNumber(taxi.getTaxiNumber());
-        newTaxi.setUser(user);
         return taxiRepo.save(newTaxi);
     }
 

@@ -1,4 +1,4 @@
-package com.taxiconnect.entities.taxi;
+package com.taxiconnect.entities.client;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.taxiconnect.entities.user.User;
@@ -18,27 +18,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "taxis")
+@Table(name = "clients")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id") // This links to the parent User table
-public class Taxi extends User {
+public class Client extends User {
+    // Add client-specific fields here
     @Column()
-    private boolean validated = false;
-
-    @Column(unique = true, nullable = false)
-    private String matricule;
-
-    @Column(nullable = false)
-    private String model;
-
-    @Column(nullable = false)
-    private String brand;
-
-    @Column(nullable = false, unique = true)
-    private Long taxiNumber;
+    private String preferences;
     
-    // Remove the User field since Taxi IS a User
+    // Remove the User field since Client IS a User
 }

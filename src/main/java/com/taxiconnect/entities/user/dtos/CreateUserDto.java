@@ -25,7 +25,7 @@ public class CreateUserDto {
     @NotBlank(message = "The password is required.")
     private String password;
    // @NotBlank(message = "The roles are required.")
-    private Set<UserRoles> roles;
+    private UserRoles roles;
 
     
 }
